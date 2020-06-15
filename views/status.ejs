@@ -1,0 +1,93 @@
+<%- include("partials/header") -%>
+
+<div class="container">
+
+  <canvas id="myChart"></canvas>
+</div>
+
+
+<script type="text/javascript">
+  let myChart = document.getElementById('myChart').getContext('2d');
+
+  // Global options
+  Chart.defaults.global.defaultFontFamily = 'Merriweather';
+  Chart.defaults.global.defaultFontSize = 18;
+  Chart.defaults.global.defaultFontColor = '#FFFFFF'
+
+  let massPopChart = new Chart(myChart, {
+
+    type: 'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+    data: {
+      labels: ['Completed Tasks', 'Total Tasks'],
+      datasets: [{
+        barPercentage: 0.4,
+        label: 'Population',
+        data: [
+          <%= completedTasks %> , <%= totalTasks %>
+        ],
+        //backgroundColor: 'green'
+        backgroundColor: [
+          'rgba(60, 179, 113, 0.6)',
+          'rgba(255, 99, 132, 0.6)',
+
+
+        ],
+        borderWidth: 1,
+        borderColor: '#777',
+        hoverBorderWidth: 3,
+        hoverBorderColor: '#000'
+      }],
+    },
+    options: {
+
+      scales: {
+
+        xAxes: [{
+
+          ticks: {
+
+            beginAtZero: true,
+            callback: function(value){
+
+              if(value % 1 == 0){
+
+                return value;
+              }
+            }
+          }
+        }]
+      },
+
+      title: {
+        display: true,
+        text: 'Work done today',
+        fontSize: 25
+      },
+
+      legend: {
+        display: true,
+        position: 'right',
+        labels: {
+
+          fontColor: '#000'
+        }
+      },
+      layout: {
+
+        padding: {
+          left: 50,
+          right: 0,
+          bottom: 0,
+          top: 0
+        }
+      },
+      tooltips:{
+
+        enabled:true
+      }
+    }
+  });
+</script>
+
+
+<%- include("partials/footer") -%>

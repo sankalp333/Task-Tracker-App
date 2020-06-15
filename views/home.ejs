@@ -1,0 +1,25 @@
+<%- include("partials/header") -%>
+
+<div class="wrapper">
+
+  <% tasksList.forEach(function(task){ %>
+
+  <div class="box">
+    <div class="taskName">
+      <p><%= task.title %></p>
+    </div>
+    <form class="" action="/details/:<%= task.title.toLowerCase().split(" ").join("-") %>" method="post">
+    <button id="details-btn" type="submit" class="btn btn-primary">Details</button>
+    </form>
+
+    <form class="" action="/delete/:<%= task.title.toLowerCase().split(" ").join("-") %>" method="post">
+      <button name="name" value = "<%= task.title %>" id="status-btn" type="submit" class="btn btn-success">Done</button>
+    </form>
+  </div>
+
+
+  <% });%>
+
+</div>
+
+<%- include("partials/footer") -%>
